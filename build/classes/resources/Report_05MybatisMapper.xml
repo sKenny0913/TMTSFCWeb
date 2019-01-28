@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Report_05Mapper">
+	<resultMap id="ReportResult" type="Report_01">
+		<result property="OUTER_ID" column="OUTER_ID" />
+		<result property="INNER_ID" column="INNER_ID" />
+		<result property="INNER_SEQ" column="INNER_SEQ" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Report_05">
+     
+  SELECT OUTER_ID,INNER_ID,INNER_SEQ FROM LITECLIENT.LS_PACK_IL
+  <where>
+    <if test="OUTER_ID != null and OUTER_ID != ''">
+         OUTER_ID like CONCAT(CONCAT('%',#{OUTER_ID}),'%')
+    </if>
+    <if test="INNER_ID != null and INNER_ID != ''">
+        AND INNER_ID like CONCAT(CONCAT('%',#{INNER_ID}),'%')
+    </if>
+    <if test="INNER_SEQ != null and INNER_SEQ != ''">
+        AND INNER_SEQ like CONCAT(CONCAT('%',#{INNER_SEQ}),'%')
+    </if>
+  </where>
+ ORDER BY OUTER_ID, INNER_ID 
+</select>
+
+</mapper>

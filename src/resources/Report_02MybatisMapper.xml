@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Report_02Mapper">
+	<resultMap id="ReportResult" type="Report_02">
+		<result property="BILL_NO" column="BILL_NO" />
+		<result property="STATION" column="STATION" />
+		<result property="HDD_REG" column="HDD_REG" />
+		<result property="PID" column="PID" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Report_02">
+SELECT SN AS PID,BILL_NO,STATION,CT_SN1 AS HDD_REG,SUBSTR(BILL_NO,0,3) AS WO_TYPE
+   FROM LITECLIENT.LS_SN 
+  <where>
+    <if test="BILL_NO != null and BILL_NO != ''">
+         BILL_NO like CONCAT(CONCAT('%',#{BILL_NO}),'%')
+    </if>
+    <if test="STATION != null and STATION != ''">
+        AND STATION like #{STATION}
+    </if>
+    <if test="HDD_REG != null and HDD_REG != ''">
+        AND CT_SN1 like CONCAT(CONCAT('%',#{HDD_REG}),'%')
+    </if>
+    <if test="PID != null and PID != ''">
+        AND SN like CONCAT(CONCAT('%',#{PID}),'%')
+    </if>
+    AND ID_TIER IN( 'PALLET','OVERPACK_PALLET','OVERPACK_CID') 
+    AND SUBSTR(BILL_NO,0,3) IN ('KSN','KWK','KMO','KHH')
+  </where>
+ ORDER BY BILL_NO
+</select>
+
+</mapper>

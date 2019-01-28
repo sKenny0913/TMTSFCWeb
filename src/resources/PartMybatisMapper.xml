@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.PartMapper">
+	<resultMap id="PartResult" type="Part">
+		<result property="PART_NO" column="PART_NO" />
+		<result property="HDD_VALUE" column="HDD_VALUE" />
+		<result property="YEAR_LIMITATION" column="YEAR_LIMITATION" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Part">
+  SELECT PART_NO,HDD_VALUE,YEAR_LIMITATION FROM sfc.c_part_no_base_t
+  <where>
+    <if test="PART_NO != null and PART_NO != ''">
+         PART_NO like CONCAT(CONCAT('%',#{PART_NO}),'%')
+    </if>
+    <if test="HDD_VALUE != null and HDD_VALUE != ''">
+        AND HDD_VALUE like CONCAT(CONCAT('%',#{HDD_VALUE}),'%')
+    </if>
+    <if test="YEAR_LIMITATION != null and YEAR_LIMITATION != ''">
+        AND YEAR_LIMITATION like CONCAT(CONCAT('%',#{YEAR_LIMITATION}),'%')
+    </if>
+  </where>
+  ORDER BY PART_NO asc
+</select>
+
+
+<update id="updatePart" parameterType="Part">
+		UPDATE sfc.c_part_no_base_t SET
+		HDD_VALUE=#{HDD_VALUE}, YEAR_LIMITATION =#{YEAR_LIMITATION} WHERE PART_NO = #{PART_NO}
+	</update>
+
+</mapper>

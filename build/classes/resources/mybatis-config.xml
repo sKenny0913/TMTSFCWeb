@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.dao.AOI_POJO" alias="AOI" />
+		<typeAlias type="com.dao.OPC_POJO" alias="OPC" />
+		<typeAlias type="com.dao.Part_POJO" alias="Part" />
+		<typeAlias type="com.dao.User_POJO" alias="User" />
+		<typeAlias type="com.dao.Report_01_POJO" alias="Report_01" />
+		<typeAlias type="com.dao.Report_02_POJO" alias="Report_02" />
+		<typeAlias type="com.dao.Report_03_POJO" alias="Report_03" />
+		<typeAlias type="com.dao.Report_04_POJO" alias="Report_04" />
+		<typeAlias type="com.dao.Report_05_POJO" alias="Report_05" />
+		<typeAlias type="com.dao.Report_07_POJO" alias="Report_07" />
+	</typeAliases>
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="oracle.jdbc.driver.OracleDriver" />
+				<property name="url"
+					value="jdbc:oracle:thin:@172.21.10.102:1521:sfc" />
+				<property name="username" value="liteclient" />
+				<property name="password" value="LITECLIENT" />
+
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="resources/MybatisMapper.xml" />
+		<mapper resource="resources/OPCMybatisMapper.xml" />
+		<mapper resource="resources/PartMybatisMapper.xml" />
+		<mapper resource="resources/UserMybatisMapper.xml" />
+		<mapper resource="resources/Report_01MybatisMapper.xml" />
+		<mapper resource="resources/Report_02MybatisMapper.xml" />
+		<mapper resource="resources/Report_03MybatisMapper.xml" />
+		<mapper resource="resources/Report_04MybatisMapper.xml" />
+		<mapper resource="resources/Report_05MybatisMapper.xml" />
+		<mapper resource="resources/Report_07MybatisMapper.xml" />
+	</mappers>
+</configuration>

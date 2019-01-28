@@ -1,0 +1,21 @@
+[{
+    "userid": "kenny.huang"
+    , "password": "123123"
+    , "privilege": "administrator"
+}, {
+    "userid": "admin"
+    , "password": "admin"
+    , "privilege": "IT"
+}, {
+    "userid": "test"
+    , "password": "test"
+    , "privilege": "basic"
+}, {
+    "userid": "TMTAUTO"
+    , "password": "TEST"
+    , "privilege": "AUTO"
+}, {
+    "userid": "Report"
+    , "password": "ReportQWE"
+    , "privilege": "REPORT"
+}]

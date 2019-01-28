@@ -1,0 +1,69 @@
+<style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Montserrat", sans-serif
+    }
+    
+    .w3-row-padding img {
+        margin-bottom: 12px
+    }
+    /* Set the width of the sidebar to 120px */
+    
+    .w3-sidebar {
+        width: 120px;
+        background: #222;
+    }
+    /* Add a left margin to the"page content" that matches the width of the sidebar (120px) */
+    
+    #main {
+        margin-left: 120px
+    }
+    /* Remove margins from"page content" on small screens */
+    
+    @media only screen and (max-width: 600px) {
+        #main {
+            margin-left: 0
+        }
+    }
+</style>
+<!-- Icon Bar (Sidebar - hidden on small screens) -->
+<nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
+    <!-- Avatar image in top left corner -->
+    <!--  <img src="/w3images/avatar_smoke.jpg" style="width:100%">-->
+    <a id="idLogin" onclick="document.getElementById('idDivLogin').style.display='block'" class="w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-user-circle-o w3-xxlarge"></i>
+        <p id="idPuserName">Login</p>
+    </a>
+    <a href="Main" class="w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-home w3-xxlarge"></i>
+        <p>HOME</p>
+    </a>
+    <a target="_top" href="User" class="Dev w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>User</p>
+    </a>
+    <a target="_top" href="OPC_Setting" class="IT w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>OPC Setting</p>
+    </a>
+    <a target="_top" href="AOI_Setting" class="w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>AOI Setting</p>
+    </a>
+    <a target="_top" href="Part_Setting" class="w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>Part Setting</p>
+    </a>
+    <a onclick="document.getElementById('idReport').style.display='block'" class="Report w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-table w3-xxlarge"></i>
+        <p>Report</p>
+    </a>
+    <a target="_top" href="Error_Code" class="Dev w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>Error Code</p>
+    </a>
+    <a target="_top" href="History" class="Dev w3-bar-item w3-button w3-padding-large w3-hover-black"> <i class="fa fa-search w3-xxlarge"></i>
+        <p>History</p>
+    </a>
+</nav>
+<!-- Navbar on small screens (Hidden on medium and large screens) -->
+<div class="w3-top w3-hide-large w3-hide-medium" id="myNavbar">
+    <div class="w3-bar w3-black w3-opacity w3-hover-opacity-off w3-center w3-small"> <a id="idALogin" class="w3-bar-item w3-button" style="width:25% !important" onclick="document.getElementById('idDivLogin').style.display='block'">Login</a> <a href="Main" class="w3-bar-item w3-button" style="width:25% !important">HOME</a> <a href="User" class="Dev w3-bar-item w3-button" style="width:25% !important">User</a> <a href="OPC_Setting" class="IT w3-bar-item w3-button" style="width:25% !important">OPC Setting</a><a href="AOI_Setting" class="w3-bar-item w3-button" style="width:25% !important">AOI Setting</a><a href="Part_Setting" class="w3-bar-item w3-button" style="width:25% !important">Part Setting</a><a onclick="document.getElementById('idReport').style.display='block'" class="Report w3-bar-item w3-button" style="width:25% !important">Report</a><a href="Error_Code" class="Dev w3-bar-item w3-button" style="width:25% !important" style="display:none">Error Code</a><a href="History" class="Dev w3-bar-item w3-button" style="width:25% !important" style="display:none">History</a> </div>
+</div>

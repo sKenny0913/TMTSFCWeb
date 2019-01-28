@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Report_03Mapper">
+	<resultMap id="ReportResult" type="Report_03">
+		<result property="WO" column="WO" />
+		<result property="SERIAL_NUMBER" column="SERIAL_NUMBER" />
+		<result property="TEST_SN1" column="TEST_SN1" />
+		<result property="STATION" column="STATION" />
+		<result property="TEST_RESULT" column="TEST_RESULT" />
+		<result property="TEST_CONTENT" column="TEST_CONTENT" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Report_03">
+select WORK_ORDER as WO, SERIAL_NUMBER as SN, TEST_SN1 as HDD_ID, STATION_NAME as STATION, TEST_RESULT, CPK_DATA AS TEST_CONTENT from sfc.r_assy_test_t 
+  <where>
+    <if test="WO != null and WO != ''">
+         WORK_ORDER like CONCAT(CONCAT('%',#{WO}),'%')
+    </if>
+    <if test="SN != null and SN != ''">
+        AND SERIAL_NUMBER like CONCAT(CONCAT('%',#{SN}),'%')
+    </if>
+    <if test="HDD_ID != null and HDD_ID != ''">
+        AND TEST_SN1 like CONCAT(CONCAT('%',#{HDD_ID}),'%')
+    </if>
+    <if test="STATION != null and STATION != ''">
+        AND STATION_NAME like CONCAT(CONCAT('%',#{STATION}),'%')
+    </if>
+    <if test="TEST_RESULT != null and TEST_RESULT != ''">
+        AND TEST_RESULT like CONCAT(CONCAT('%',#{TEST_RESULT}),'%')
+    </if>
+    <if test="TEST_CONTENT != null and TEST_CONTENT != ''">
+        AND CPK_DATA like CONCAT(CONCAT('%',#{TEST_CONTENT}),'%')
+    </if>
+  </where>
+</select>
+
+</mapper>

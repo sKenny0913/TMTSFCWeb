@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Report_04Mapper">
+	<resultMap id="ReportResult" type="Report_04">
+		<result property="WO" column="WO" />
+		<result property="HDD_PN" column="HDD_PN" />
+		<result property="HDD_ID" column="HDD_ID" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Report_04">
+SELECT WORK_ORDER AS WO, SERIAL_NUMBER  AS HDD_ID, C_PART_NO AS HDD_PN FROM SFCL.R_CPN_TRACKING_T 
+  <where>
+    <if test="WO != null and WO != ''">
+         WORK_ORDER like CONCAT(CONCAT('%',#{WO}),'%')
+    </if>
+    <if test="HDD_ID != null and HDD_ID != ''">
+        AND SERIAL_NUMBER like CONCAT(CONCAT('%',#{HDD_ID}),'%')
+    </if>
+    <if test="HDD_PN != null and HDD_PN != ''">
+        AND C_PART_NO like CONCAT(CONCAT('%',#{HDD_PN}),'%')
+    </if>
+      AND CPN_TYPE ='HDD_ID' 
+  </where>
+</select>
+
+</mapper>

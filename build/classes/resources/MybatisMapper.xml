@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.AOIMapper">
+	<resultMap id="AOIResult" type="AOI">
+		<id property="ccd_setting_sid" column="ccd_setting_sid" />
+		<result property="line" column="line" />
+		<result property="station" column="station" />
+		<result property="sku" column="sku" />
+		<result property="command_type" column="command_type" />
+		<result property="command" column="command" />
+		<result property="n1" column="n1" />
+		<result property="n2" column="n2" />
+		<result property="n3" column="n3" />
+		<result property="n4" column="n4" />
+		<result property="n5" column="n5" />
+		<result property="n6" column="n6" />
+		<result property="n7" column="n7" />
+		<result property="n8" column="n8" />
+		<result property="n9" column="n9" />
+		<result property="n10" column="n10" />
+		<result property="n11" column="n11" />
+		<result property="n12" column="n12" />
+		<result property="n13" column="n13" />
+		<result property="n14" column="n14" />
+		<result property="n15" column="n15" />
+		<result property="nodekey" column="nodekey" />
+	</resultMap>
+
+	<select id="selectAOI" resultType="AOI" parameterType="int"
+		resultMap="AOIResult">
+		SELECT id, name, district from AOI WHERE id = }),'%')id}
+	</select>
+
+	<insert id="insertAOI" parameterType="AOI">
+		INSERT into
+		AOI(id,name,district) VALUES(#{id},#{name}, #{district})
+	</insert>
+
+	<update id="updateAOI" parameterType="AOI">
+		UPDATE AOI SET
+		name=#{name}, district =#{district} WHERE id =#{id}
+	</update>
+
+	<delete id="deleteAOI" parameterType="int">
+		DELETE FROM AOI
+		WHERE id =#{id}
+	</delete>
+
+	<select id="dynamicSelect"
+     resultType="AOI">
+  SELECT * FROM LC_CCD_SETTING
+  <where>
+    <if test="ccd_setting_sid != null and ccd_setting_sid != ''">
+         ccd_setting_sid = #{ccd_setting_sid}
+    </if>
+    <if test="line != null and line != ''">
+        AND line like CONCAT(CONCAT('%',#{line}),'%')
+    </if>
+    <if test="station != null and station != ''">
+        AND station like #{station}
+    </if>
+    <if test="sku != null and sku != ''">
+        AND sku like CONCAT(CONCAT('%',#{sku}),'%')
+    </if>
+    <if test="command_type != null and command_type != ''">
+        AND command_type like #{command_type}
+    </if>
+    <if test="command != null and command != ''">
+        AND command like CONCAT(CONCAT('%',#{command}),'%')
+    </if>
+    <if test="n1 != null and n1 != ''">
+        AND n1 like CONCAT(CONCAT('%',#{n1}),'%')
+    </if>
+    <if test="n2 != null and n2 != ''">
+        AND n2 like CONCAT(CONCAT('%',#{n2}),'%')
+    </if>
+    <if test="n3 != null and n3 != ''">
+        AND n3 like CONCAT(CONCAT('%',#{n3}),'%')
+    </if>
+    <if test="n4 != null and n4 != ''">
+        AND n4 like CONCAT(CONCAT('%',#{n4}),'%')
+    </if>
+    <if test="n5 != null and n5 != ''">
+        AND n5 like CONCAT(CONCAT('%',#{n5}),'%')
+    </if>
+    <if test="n6 != null and n6 != ''">
+        AND n6 like CONCAT(CONCAT('%',#{n6}),'%')
+    </if>
+    <if test="n7 != null and n7 != ''">
+        AND n7 like CONCAT(CONCAT('%',#{n7}),'%')
+    </if>
+    <if test="n8 != null and n8 != ''">
+        AND n8 like CONCAT(CONCAT('%',#{n8}),'%')
+    </if>
+    <if test="n9 != null and n9 != ''">
+        AND n9 like CONCAT(CONCAT('%',#{n9}),'%')
+    </if>
+    <if test="n10 != null and n10 != ''">
+        AND n10 like CONCAT(CONCAT('%',#{n10}),'%')
+    </if>
+    <if test="n11 != null and n11 != ''">
+        AND n11 like CONCAT(CONCAT('%',#{n11}),'%')
+    </if>
+    <if test="n12 != null and n12 != ''">
+        AND n12 like CONCAT(CONCAT('%',#{n12}),'%')
+    </if>
+    <if test="n13 != null and n13 != ''">
+        AND n13 like CONCAT(CONCAT('%',#{n13}),'%')
+    </if>
+    <if test="n14 != null and n14 != ''">
+        AND n14 like CONCAT(CONCAT('%',#{n14}),'%')
+    </if>
+    <if test="n15 != null and n15 != ''">
+        AND n15 like CONCAT(CONCAT('%',#{n15}),'%')
+    </if>
+    <if test="nodekey != null and nodekey != ''">
+        AND nodekey like CONCAT(CONCAT('%',#{nodekey}),'%')
+    </if>
+  </where>
+  ORDER BY ccd_setting_sid asc
+</select>
+
+</mapper>
+

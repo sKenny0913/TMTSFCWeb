@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.Report_01Mapper">
+	<resultMap id="ReportResult" type="Report_01">
+		<result property="BILL_NO" column="BILL_NO" />
+		<result property="STATION" column="STATION" />
+		<result property="ID_TIER" column="ID_TIER" />
+		<result property="SN" column="SN" />
+	</resultMap>
+
+	<select id="dynamicSelect"
+     resultType="Report_01">
+  SELECT BILL_NO,STATION,ID_TIER,SN FROM LITECLIENT.LS_SN
+  <where>
+    <if test="BILL_NO != null and BILL_NO != ''">
+         BILL_NO like CONCAT(CONCAT('%',#{BILL_NO}),'%')
+    </if>
+    <if test="STATION != null and STATION != ''">
+        AND STATION like #{STATION}
+    </if>
+    <if test="ID_TIER != null and ID_TIER != ''">
+        AND ID_TIER like CONCAT(CONCAT('%',#{ID_TIER}),'%')
+    </if>
+    <if test="SN != null and SN != ''">
+        AND SN like CONCAT(CONCAT('%',#{SN}),'%')
+    </if>
+  </where>
+ ORDER BY STATION, SN
+</select>
+
+</mapper>

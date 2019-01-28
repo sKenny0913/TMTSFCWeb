@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.OPCMapper">
+	<resultMap id="OPCResult" type="OPC">
+		<id property="opc_node_sid" column="opc_node_sid" />
+		<result property="node" column="node" />
+		<result property="data_type" column="data_type" />
+		<result property="address" column="address" />
+		<result property="userid" column="userid" />
+		<result property="updatetime" column="updatetime" />
+		<result property="descr" column="descr" />
+	</resultMap>
+
+	<select id="selectOPC" resultType="OPC" parameterType="int"
+		resultMap="OPCResult">
+		SELECT id, name, district from OPC WHERE id = }),'%')id}
+	</select>
+
+	<insert id="insertOPC" parameterType="OPC">
+		INSERT into
+		OPC(id,name,district) VALUES(#{id},#{name}, #{district})
+	</insert>
+
+	<update id="updateOPC" parameterType="OPC">
+		UPDATE OPC SET
+		name=#{name}, district =#{district} WHERE id =#{id}
+	</update>
+
+	<delete id="deleteOPC" parameterType="int">
+		DELETE FROM OPC
+		WHERE id =#{id}
+	</delete>
+
+	<select id="dynamicSelect"
+     resultType="OPC">
+  SELECT * FROM lc_opc_node
+  <where>
+    <if test="opc_node_sid != null and opc_node_sid != ''">
+         opc_node_sid = #{opc_node_sid}
+    </if>
+    <if test="node != null and node != ''">
+        AND node like CONCAT(CONCAT('%',#{node}),'%')
+    </if>
+    <if test="data_type != null and data_type != ''">
+        AND data_type like #{data_type}
+    </if>
+    <if test="address != null and address != ''">
+        AND address like CONCAT(CONCAT('%',#{address}),'%')
+    </if>
+    <if test="userid != null and userid != ''">
+        AND userid like #{userid}
+    </if>
+    <if test="updatetime != null and updatetime != ''">
+        AND updatetime like CONCAT(CONCAT('%',#{updatetime}),'%')
+    </if>
+    <if test="descr != null and descr != ''">
+        AND descr like CONCAT(CONCAT('%',#{descr}),'%')
+    </if>
+  </where>
+  ORDER BY Node asc
+</select>
+
+</mapper>
